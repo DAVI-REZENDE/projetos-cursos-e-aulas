@@ -11,7 +11,7 @@ public class Lutador {
 	private int derrotas;
 	private int empates;
 	
-	public Lutador(String nome,String nacio,int idade, float altura, float peso, String catego, int vito, int derro, int empa) {
+	public Lutador(String nome,String nacio,int idade, float altura, float peso, int vito, int derro, int empa) {
 	this.nome = nome;
 	this.nacionalidade = nacio;
 	this.idade = idade;
@@ -57,16 +57,27 @@ public class Lutador {
 	public String getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(String categoria) {
+	
+	private void setCategoria() {
+		
 		if(this.peso<52.2) {
+			
 			this.categoria = "Invalido";
-		}else if(this.peso<= 70.3){
+			
+		}else if(this.peso <= 70.3){
+			
 			this.categoria = "Leve";
-		}else if(this.peso >= 83.9) {
+			
+		}else if(this.peso <= 83.9) {
+			
 			this.categoria = "Medio";
-		}else if(this.peso >= 120.2) {
+			
+		}else if(this.peso <= 120.2) {
+			
 			this.categoria = "Pesado";
+			
 		}else {
+			
 			this.categoria = "Invalido";
 		}
 	}
@@ -88,4 +99,39 @@ public class Lutador {
 	public void setEmpates(int empates) {
 		this.empates = empates;
 	}
+	//Metodos abstratos
+	
+	public void ganharLuta() {
+		this.setVitorias(getVitorias() + 1);
+	}
+	
+	public void perderLuta() {
+		this.setDerrotas(getDerrotas() + 1);
+	}
+	
+	public void empatarLuta() {
+		this.setEmpates(getEmpates() + 1);
+	}
+	
+	public void apresentar() {
+		System.out.println("__________________________");
+		System.out.println("Lutador: " + this.getNome());
+		System.out.println("Origem: " + this.getNacionalidade());
+		System.out.println(getIdade() + " anos");
+		System.out.println(getAltura() + " m de altura");
+		System.out.println("Pesando " + getPeso());
+		System.out.println("Com " + getVitorias() + " vitorias");
+		System.out.println("Com " + getDerrotas() + " derrotas");
+		System.out.println("E " + getEmpates() + " empates");
+	}
+	
+	public void status() {
+		System.out.println(getNome() + " é um peso " + getCategoria());
+		System.out.println(getVitorias() + " vitorias");
+		System.out.println(getDerrotas() + " derrotas");
+		System.out.println( getEmpates() + " empates");
+	}
+	
+	
+	
 }
