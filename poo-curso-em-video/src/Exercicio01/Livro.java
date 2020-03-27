@@ -29,13 +29,15 @@ public class Livro implements Publicacao{
 		if(this.pagAtual > this.totpaginas) {
 			System.out.println("O livro so tem " + this.getTotpaginas() + "  paginas");
 		}else {
-			System.out.println("VocÃª esta na pagina " + this.getPagAtual());
+			System.out.println("Você esta na pagina " + this.getPagAtual());
 		}
 		if(this.isAberto() == true) {
 		System.out.println("Ele esta aberto");
 		}else {
 			System.out.println("Ele esta fechado!");
 		}
+		System.out.println();
+		System.out.println("____________________________________");
 	}
 	
 	public void abrir() {
