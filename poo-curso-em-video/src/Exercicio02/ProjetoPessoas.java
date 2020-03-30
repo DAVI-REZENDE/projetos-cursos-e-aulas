@@ -1,7 +1,5 @@
 package Exercicio02;
 
-import Exercicio02.Pessoa;
-
 public class ProjetoPessoas {
 	public static void main(String[] args) {
 		Pessoa p1 = new Pessoa();

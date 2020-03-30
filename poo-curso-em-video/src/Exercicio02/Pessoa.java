@@ -34,7 +34,7 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return "Pessoa [nome = " + nome + ",\n idade = " + idade + ",\n sexo = " + sexo + "]";
+		return "Pessoa [\n nome = " + nome + ",\n idade = " + idade + ",\n sexo = " + sexo + "]";
 	}
 	
 	

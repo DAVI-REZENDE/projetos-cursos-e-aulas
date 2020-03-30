@@ -6,6 +6,10 @@ public class Aluno extends Pessoa{
 	private int matricula;
 	private String curso;
 	
+	public void pagarMensalidade() {
+		System.out.println("Pagando mensalidade do aluno " + this.getNome());
+	}
+	
 	public void cancelarMatricula(){
 		this.matricula = 0;
 		System.out.println("Matricula cancelada!");
