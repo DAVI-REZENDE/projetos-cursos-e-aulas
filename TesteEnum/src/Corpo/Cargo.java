@@ -1,7 +1,7 @@
 package Corpo;
 
 public enum Cargo {
-	OPERADOR(1),CAIXA(3),SUPERVISOR(5),DIRETOR(10);
+	OPERADOR(1),CAIXA(2),SUPERVISOR(3),DIRETOR(4);
 
 	private int valor;
 	

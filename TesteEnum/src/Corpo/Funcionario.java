@@ -5,25 +5,25 @@ import java.sql.Date;
 public class Funcionario {
 
 	private Cargo cargo;
-	private double salario;
+	private float salario;
 	private Date horasDeTrabalho;
 	 
-	public Funcionario(Cargo cargo, double salario) {
+	public Funcionario(Cargo cargo, float d) {
 		super();
 		this.cargo = cargo;
-		this.salario = salario;
+		this.salario = d;
 	}
-	
+
 	public Cargo getCargo() {
 		return cargo;
 	}
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
-	public double getSalario() {
+	public float getSalario() {
 		return salario;
 	}
-	public void setSalario(double salario) {
+	public void setSalario(float salario) {
 		this.salario = salario;
 	}
 	public Date getHorasDeTrabalho() {
@@ -35,7 +35,7 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return "Funcionario [\n cargo=" + cargo + ",\n salario=" + salario + ",\n horasDeTrabalho=" + horasDeTrabalho + "\n]";
+		return "Funcionario [\n cargo = " + cargo + ",\n salario = " + salario + ",\n horasDeTrabalho = " + horasDeTrabalho + "\n]";
 	}
 	
 	

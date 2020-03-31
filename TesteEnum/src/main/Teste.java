@@ -6,15 +6,11 @@ import Corpo.Funcionario;
 public class Teste {
 	public static void main(String[] args ) {
 		
-		Funcionario fun = new Funcionario(Cargo.DIRETOR, 20.000);
+		Funcionario direotr = new Funcionario(Cargo.DIRETOR, (float) 20.000);
+		Funcionario caixa = new Funcionario(Cargo.CAIXA, (float) 10.000);
 		
-		Cargo cDire = Cargo.DIRETOR;
-		Cargo cCai = Cargo.CAIXA;
-		
-		System.out.println(fun.toString());
-		
-		System.out.println(cDire.ordinal());
-		System.out.println(cCai.ordinal());
+		System.out.println(direotr.toString());
+		System.out.println(caixa.toString());
 		
 	}
 }
