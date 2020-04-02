@@ -3,7 +3,11 @@ package com.davi.estacionamento;
 import com.davi.estacionamento.model.Veiculo;
 import com.davi.estacionamento.model.tipo.TipoCarro;
 
+<<<<<<< HEAD
 import javax.swing.JOptionPane;
+=======
+import java.sql.SQLException;
+>>>>>>> 38f9c0ea34f69262782824d678981343ee80c3ce
 
 import com.davi.estacionamento.dao.VagaDao;
 import com.davi.estacionamento.model.Vaga;
@@ -11,7 +15,7 @@ import com.davi.estacionamento.model.Vaga;
 public class Estacionamento {
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 	
 		int numeroDeVagasNoPatio = 16;
 		
@@ -29,7 +33,7 @@ public class Estacionamento {
 		vagaDao.addEntrada(vagas[4]);
 		vagaDao.addEntrada(vagas[3]);
 		
-		vagaDao.liberarCarroDaVaga(vagas[4]);
+		//vagaDao.liberarCarroDaVaga(vagas[4]);
 		
 		//listar todas vagas 
 		Vaga [] vagasRegistradas = vagaDao.getVagas();

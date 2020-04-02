@@ -6,5 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/TI/c3p0-0.9.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/TI/mchange-commons-java-0.2.16.jar"/>
+	<classpathentry kind="lib" path="C:/TI/mysql-connector-java-8.0.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
