@@ -24,19 +24,17 @@ public class Estacionamento {
 		vagas[5] = new Vaga(9, new Veiculo( TipoCarro.CARRO_GRANDE, "F-10",  "BNH-0077"));
 		
 		VagaDao vagaDao = new VagaDao();
-		vagaDao.addCarroNaVaga(vagas[0]);
+		vagaDao.addCarroNaVaga(vagas[5]);
 		vagaDao.addCarroNaVaga(vagas[4]);
 		vagaDao.addCarroNaVaga(vagas[3]);
 		
 		//vagaDao.liberarCarroDaVaga(vagas[4]);
 		
 		//listar todas vagas 
-		Vaga [] vagasRegistradas = vagaDao.getVagas();
+		//VagaDao listarvagas = new VagaDao();
+		//listarvagas.getVagas();
 		
-		for (int i = 0; i < vagasRegistradas.length; i++) {
-			Vaga vaga = vagasRegistradas[i];
-			System.out.println(vaga);
-		}
+
 		
 	}
 

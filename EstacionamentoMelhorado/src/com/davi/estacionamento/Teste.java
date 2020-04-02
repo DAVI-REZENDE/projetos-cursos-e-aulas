@@ -20,9 +20,10 @@ public class Teste {
 	     Vaga vaga = new Vaga(1, carroP);
 	     VagaDao vaga1 = new VagaDao();
 	        
-	     vaga1.addCarroNaVaga(vaga);
+	     //vaga1.addCarroNaVaga(vaga);
 	     //vaga1.liberarCarroDaVaga(vaga);
-	     System.out.println(vaga.getStatus()); 
+	     vaga1.getDataFormatada();
+	     System.out.println(vaga.getStatus().name());
 	         
 	        
 	    }

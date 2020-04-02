@@ -9,7 +9,7 @@ public class SorteiaCapitão {
 		switch (capitao) {
 		
 		case 0:
-			System.out.println("O capitão de hoje e o Pedro");
+			System.out.println("O capitão de hoje e o Pedro"); 
 			break;
 		case 1:
 			System.out.println("O capitão de hoje e o Jefte");

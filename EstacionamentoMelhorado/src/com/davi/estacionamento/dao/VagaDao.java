@@ -4,8 +4,9 @@
 package com.davi.estacionamento.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,31 +29,31 @@ public class VagaDao {
 	 * @param vaga
 	 * @throws SQLException 
 	 */
-	public void addCarroNaVaga(Vaga vaga) throws SQLException {
-		
-		ConnetionFactory factory = new ConnetionFactory();
-		Connection con = ConnetionFactory.getConnection();
-		Statement stm = con.createStatement();
+	
+	public String getDataFormatada() {
+		SimpleDateFormat dt = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 		Calendar c = Calendar.getInstance();
 		Date data = c.getTime(); 
 		
-		SimpleDateFormat dt = new SimpleDateFormat("YYYY-MM-dd");
-		SimpleDateFormat hor = new SimpleDateFormat("HH:mm:ss");
-		int  dia = c.get(Calendar.DATE);
-		int mes = c.get(Calendar.MONTH);
-		int ano = c.get(Calendar.YEAR);
-		 
 		String date = dt.format(data);
-		String hora = hor.format(data);
-		String horaNula = "0000-00-00" + " " + "00:00:00";
-		String result = date + " " + hora;
+		return date;
 		
-		if(vaga.isOcupado().equals(VagaStatus.OCUPADO)) {
-			
-			stm.execute("insert into vagas (veiculo, placa, status, horario_entrada, horario_saida) values ('" + vaga.getCarro().getNome() +"','" + vaga.getCarro().getPlaca() + 
-				"','" +vaga.getStatus()+"','" + result+"','" + horaNula + "')");	
-			
-		}
+	}
+	
+	public void addCarroNaVaga(Vaga vaga) throws SQLException {
+		
+		String sql = "insert into vagas (numero_vaga, veiculo, placa, status, horario_entrada, horario_saida) values ( ?,?,?,?,?'" + null + "')" ;
+		
+		ConnetionFactory factory = new ConnetionFactory();
+		Connection con = ConnetionFactory.getConnection();
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setInt(1, vaga.getNumeroVaga());
+		ps.setString(2, vaga.getCarro().getNome());
+		ps.setString(3, vaga.getCarro().getPlaca());
+		ps.setString(4, vaga.getStatus().name());
+		ps.setString(5, this.getDataFormatada());
+		
 		
 		// sql para inserir no banco 
 	}
@@ -84,10 +85,28 @@ public class VagaDao {
 		//sql para atualizar no banco
 	}
 	
-	public Vaga[] getVagas() throws SQLException {
-		ConnetionFactory.getConnection();
-		// SELECT * FROM vagas NO MYSQL 
-		return null;
+	public void getVagas() throws SQLException {
+		ConnetionFactory connectionFactory = new ConnetionFactory();
+		Connection con = connectionFactory.getConnection();
+		PreparedStatement stm = con.prepareStatement("select * from vaga");
+
+		ResultSet rst = stm.getResultSet();
+		
+		while(rst.next()) {
+			Integer id = rst.getInt("id");
+			Integer numero_vaga = rst.getInt("numero_vaga");
+			String Veiculo = rst.getString("veiculo");
+			String Placa = rst.getString("placa");
+			String status = rst.getString("status");
+			String horario_entrada = rst.getString("horario_entrada");
+			String horario_saida = rst.getString("horario_saida");
+			
+			System.out.println(id + " | " + numero_vaga + " | " + Veiculo + " | " + Placa + " | " + status + " | " + horario_entrada + " | " + horario_saida );
+			
+		}
+		
+		con.close();
+
 	}
 	
 }
