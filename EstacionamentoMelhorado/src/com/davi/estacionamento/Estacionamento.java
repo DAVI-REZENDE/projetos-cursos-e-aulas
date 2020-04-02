@@ -2,6 +2,9 @@ package com.davi.estacionamento;
 
 import com.davi.estacionamento.model.Veiculo;
 import com.davi.estacionamento.model.tipo.TipoCarro;
+
+import javax.swing.JOptionPane;
+
 import com.davi.estacionamento.dao.VagaDao;
 import com.davi.estacionamento.model.Vaga;
 
@@ -21,9 +24,10 @@ public class Estacionamento {
 		vagas[5] = new Vaga(9, new Veiculo( TipoCarro.CARRO_GRANDE, "F-10",  "BNH-0077"));
 		
 		VagaDao vagaDao = new VagaDao();
-		vagaDao.addCarroNaVaga(vagas[0]);
-		vagaDao.addCarroNaVaga(vagas[4]);
-		vagaDao.addCarroNaVaga(vagas[3]);
+		
+		vagaDao.addEntrada(vagas[0]);
+		vagaDao.addEntrada(vagas[4]);
+		vagaDao.addEntrada(vagas[3]);
 		
 		vagaDao.liberarCarroDaVaga(vagas[4]);
 		
@@ -35,6 +39,7 @@ public class Estacionamento {
 			System.out.println(vaga);
 		}
 		
+	
 	}
 
 }

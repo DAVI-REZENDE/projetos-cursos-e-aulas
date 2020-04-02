@@ -3,6 +3,7 @@
  */
 package com.davi.estacionamento.dao;
 
+import java.sql.Connection;
 import java.util.Date;
 
 import com.davi.estacionamento.model.Vaga;
@@ -22,9 +23,9 @@ public class VagaDao {
 	 * vaga contem carro 
 	 * @param vaga
 	 */
-	public void addCarroNaVaga(Vaga vaga) {
+	public void addEntrada(Vaga vaga) {
 		
-		ConnetionFactory.getConnection();
+		Connection conexao = ConnetionFactory.getConnection();
 		
 		if(vaga.isOcupado().equals(VagaStatus.OCUPADO)) {
 			// so é possivel adicionar se a vaga possuir um carro
@@ -51,7 +52,8 @@ public class VagaDao {
 	public Vaga[] getVagas() {
 		ConnetionFactory.getConnection();
 		// SELECT * FROM vagas NO MYSQL 
-		return null;
+		Vaga[] vagas = new Vaga[0];
+		return vagas;
 	}
 	
 }
