@@ -3,6 +3,8 @@ package com.davi.estacionamento;
 import com.davi.estacionamento.model.Veiculo;
 import com.davi.estacionamento.model.tipo.TipoCarro;
 
+
+import javax.swing.JOptionPane;
 import java.sql.SQLException;
 
 import com.davi.estacionamento.dao.VagaDao;
@@ -28,6 +30,10 @@ public class Estacionamento {
 		vagaDao.addCarroNaVaga(vagas[4]);
 		vagaDao.addCarroNaVaga(vagas[3]);
 		
+		vagaDao. addCarroNaVaga(vagas[0]);
+		vagaDao. addCarroNaVaga(vagas[4]);
+		vagaDao. addCarroNaVaga(vagas[3]);
+		
 		//vagaDao.liberarCarroDaVaga(vagas[4]);
 		
 		//listar todas vagas 
@@ -36,6 +42,7 @@ public class Estacionamento {
 		
 
 		
+	
 	}
 
 }

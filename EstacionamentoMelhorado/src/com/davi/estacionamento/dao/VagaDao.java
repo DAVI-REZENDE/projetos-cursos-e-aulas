@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 import java.util.Date;
 
 import com.davi.estacionamento.model.Vaga;
@@ -29,6 +30,7 @@ public class VagaDao {
 	 * @param vaga
 	 * @throws SQLException 
 	 */
+
 	
 	public String getDataFormatada() {
 		SimpleDateFormat dt = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
@@ -40,6 +42,7 @@ public class VagaDao {
 		
 	}
 	
+
 	public void addCarroNaVaga(Vaga vaga) throws SQLException {
 		
 		String sql = "insert into vagas (numero_vaga, veiculo, placa, status, horario_entrada, horario_saida) values ( ?,?,?,?,?'" + null + "')" ;
@@ -85,6 +88,7 @@ public class VagaDao {
 		//sql para atualizar no banco
 	}
 	
+
 	public void getVagas() throws SQLException {
 		ConnetionFactory connectionFactory = new ConnetionFactory();
 		Connection con = connectionFactory.getConnection();
@@ -105,8 +109,8 @@ public class VagaDao {
 			
 		}
 		
-		con.close();
 
-	}
+
+	} 
 	
 }
