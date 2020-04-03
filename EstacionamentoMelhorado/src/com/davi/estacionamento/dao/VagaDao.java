@@ -67,18 +67,7 @@ public class VagaDao {
 	 * @throws SQLException 
 	 */
 	public void liberarCarroDaVaga(Vaga vaga) throws SQLException {
-		//ConnetionFactory.getConnection();
-		Calendar c = Calendar.getInstance();
-
-		Date data = c.getTime(); 
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		SimpleDateFormat hor = new SimpleDateFormat("HH:mm:ss");
-		 
-		 String date = sdf.format(data);
-		String hora = hor.format(data);
-		
-		System.out.println(date + " " + hora);
-		    
+		ConnetionFactory.getConnection();
 		// mudar a vaga para DISPONIVEL no banco 
 		vaga.setCarro(null); // liberar o espaco para o proximo carro 
 		vaga.setStatus(VagaStatus.DISPONIVEL);
@@ -89,13 +78,13 @@ public class VagaDao {
 	}
 	
 
-	public void getVagas() throws SQLException {
+	public String getVagas() throws SQLException {
 		ConnetionFactory connectionFactory = new ConnetionFactory();
 		Connection con = connectionFactory.getConnection();
 		PreparedStatement stm = con.prepareStatement("select * from vaga");
 
 		ResultSet rst = stm.getResultSet();
-		
+		String resultado = null;
 		while(rst.next()) {
 			Integer id = rst.getInt("id");
 			Integer numero_vaga = rst.getInt("numero_vaga");
@@ -104,12 +93,11 @@ public class VagaDao {
 			String status = rst.getString("status");
 			String horario_entrada = rst.getString("horario_entrada");
 			String horario_saida = rst.getString("horario_saida");
-			
-			System.out.println(id + " | " + numero_vaga + " | " + Veiculo + " | " + Placa + " | " + status + " | " + horario_entrada + " | " + horario_saida );
+			resultado = id + " | " + numero_vaga + " | " + Veiculo + " | " + Placa + " | " + status + " | " + horario_entrada + " | " + horario_saida ;
 			
 		}
+		return resultado ;
 		
-
 
 	} 
 	

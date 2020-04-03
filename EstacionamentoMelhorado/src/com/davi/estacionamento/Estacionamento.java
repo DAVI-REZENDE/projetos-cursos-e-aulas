@@ -30,15 +30,15 @@ public class Estacionamento {
 		vagaDao.addCarroNaVaga(vagas[4]);
 		vagaDao.addCarroNaVaga(vagas[3]);
 		
-		vagaDao. addCarroNaVaga(vagas[0]);
+		vagaDao. addCarroNaVaga(vagas[5]);
 		vagaDao. addCarroNaVaga(vagas[4]);
 		vagaDao. addCarroNaVaga(vagas[3]);
 		
 		//vagaDao.liberarCarroDaVaga(vagas[4]);
 		
 		//listar todas vagas 
-		//VagaDao listarvagas = new VagaDao();
-		//listarvagas.getVagas();
+		VagaDao listarvagas = new VagaDao();
+		listarvagas.getVagas();
 		
 
 		
