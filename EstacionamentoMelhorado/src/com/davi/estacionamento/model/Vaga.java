@@ -1,5 +1,6 @@
 package com.davi.estacionamento.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import com.davi.estacionamento.model.tipo.VagaStatus;
@@ -17,7 +18,7 @@ public class Vaga {
 	
 	private Date entrada;
 	
-	private Date saida;
+	private Timestamp saida;
 	
 	// construtor padrao e uma boa pratica, manter
 	public Vaga() {
@@ -79,12 +80,13 @@ public class Vaga {
 		this.entrada = entrada;
 	}
 
-	public Date getSaida() {
+	public Timestamp getSaida() {
 		return saida;
 	}
 
-	public void setSaida(Date saida) {
-		this.saida = saida;
+	public void setSaida(Timestamp currentTimeStamp) {
+		this.saida = currentTimeStamp;
+		
 	}
 	
 	

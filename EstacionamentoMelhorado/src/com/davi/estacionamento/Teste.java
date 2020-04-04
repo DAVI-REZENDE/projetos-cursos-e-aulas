@@ -22,9 +22,10 @@ public class Teste {
 	        
 	     //vaga1.addCarroNaVaga(vaga);
 	     //vaga1.liberarCarroDaVaga(vaga);
-	     vaga1.getDataFormatada();
-	     System.out.println(vaga.getStatus().name());
-	         
+
+	     //vaga1.getVagas();
+	        
+	     vaga1.liberarCarroDaVaga(vaga);
 	        
 	    }
 

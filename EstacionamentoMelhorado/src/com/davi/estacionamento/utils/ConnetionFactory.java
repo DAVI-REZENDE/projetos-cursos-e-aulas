@@ -14,7 +14,7 @@ public static DataSource datasource;
 	
 	public ConnetionFactory() {
 		ComboPooledDataSource cpds = new ComboPooledDataSource();
-		cpds.setJdbcUrl("jdbc:mysql://localhost/estacionamento?useTimezone=true&serverTimezone=UTC");
+		cpds.setJdbcUrl("jdbc:mysql://localhost/estacionamento?useTimezone=true&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull");
 		cpds.setUser("root");
 		cpds.setPassword("Info@1234");
 		

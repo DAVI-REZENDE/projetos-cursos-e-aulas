@@ -4,9 +4,12 @@
 package com.davi.estacionamento.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -16,11 +19,16 @@ import com.davi.estacionamento.model.Vaga;
 import com.davi.estacionamento.model.tipo.VagaStatus;
 import com.davi.estacionamento.utils.ConnetionFactory;
 
+
 /**
  * @author gilbertopsantosjr
  * Dao  significa  Data Access Object é um padrao universal 
  * isso significa que essa classe é especifica para operar metodos de acesso ao banco de dados
  * cada modelo deve ter sua propria classe. essa e para class vaga
+ */
+/**
+ * @author davir
+ *
  */
 public class VagaDao {
 
@@ -31,34 +39,47 @@ public class VagaDao {
 	 * @throws SQLException 
 	 */
 
+	SimpleDateFormat dt = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+	ConnetionFactory factory = new ConnetionFactory();
+
 	
 	public String getDataFormatada() {
-		SimpleDateFormat dt = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+		
 		Calendar c = Calendar.getInstance();
 		Date data = c.getTime(); 
+		return  dt.format(data);
 		
-		String date = dt.format(data);
-		return date;
-		
+	}
+	
+	private static java.sql.Timestamp getCurrentTimeStamp() {
+
+		java.util.Date today = new java.util.Date();
+		return new java.sql.Timestamp(today.getTime());
+
 	}
 	
 
 	public void addCarroNaVaga(Vaga vaga) throws SQLException {
 		
-		String sql = "insert into vagas (numero_vaga, veiculo, placa, status, horario_entrada, horario_saida) values ( ?,?,?,?,?'" + null + "')" ;
+		try {
+		String sql = "insert into vagas (numero_vaga, veiculo, placa, status, horario_entrada, horario_saida) values (?,?,?,?,?,?)" ;
 		
-		ConnetionFactory factory = new ConnetionFactory();
 		Connection con = ConnetionFactory.getConnection();
 		PreparedStatement ps = con.prepareStatement(sql);
-		
+		 
 		ps.setInt(1, vaga.getNumeroVaga());
 		ps.setString(2, vaga.getCarro().getNome());
 		ps.setString(3, vaga.getCarro().getPlaca());
 		ps.setString(4, vaga.getStatus().name());
-		ps.setString(5, this.getDataFormatada());
+		ps.setTimestamp(5, getCurrentTimeStamp());
+		ps.setTimestamp(6, null);
 		
+		ps.executeUpdate();
 		
-		// sql para inserir no banco 
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}
 	}
 	
 	/**
@@ -73,32 +94,43 @@ public class VagaDao {
 		vaga.setStatus(VagaStatus.DISPONIVEL);
 		vaga.setEntrada(null);
 		// registra a data de saida
-		vaga.setSaida(new Date());
-		//sql para atualizar no banco
-	}
+		vaga.setSaida(getCurrentTimeStamp());
+		
+		String sql = "UPDATE vaga SET veiculo= ?, placa= ?, status= ?,horario_saida WHERE numero_vaga = ?";
+		
+		try(	Connection conn = factory.getConnection();
+				PreparedStatement stm = conn.prepareStatement(sql)
+				) {
+	
+			stm.setString(1, vaga.getCarro().getNome());
+			
+			stm.executeUpdate();	
+			} catch (SQLException e) {
+			}
+		}
 	
 
-	public String getVagas() throws SQLException {
-		ConnetionFactory connectionFactory = new ConnetionFactory();
-		Connection con = connectionFactory.getConnection();
-		PreparedStatement stm = con.prepareStatement("select * from vaga");
 
+	public void getVagas() throws SQLException {
+		Connection conn = ConnetionFactory.getConnection();
+		
+		Statement stm = conn.createStatement();
+		stm.execute("select * from vagas");
 		ResultSet rst = stm.getResultSet();
-		String resultado = null;
+		
 		while(rst.next()) {
 			Integer id = rst.getInt("id");
 			Integer numero_vaga = rst.getInt("numero_vaga");
-			String Veiculo = rst.getString("veiculo");
-			String Placa = rst.getString("placa");
+			String veiculo = rst.getString("veiculo");
+			String placa = rst.getString("placa");
 			String status = rst.getString("status");
-			String horario_entrada = rst.getString("horario_entrada");
-			String horario_saida = rst.getString("horario_saida");
-			resultado = id + " | " + numero_vaga + " | " + Veiculo + " | " + Placa + " | " + status + " | " + horario_entrada + " | " + horario_saida ;
-			
+			Timestamp horario_entrada = rst.getTimestamp("horario_entrada");
+			Timestamp horario_saida = rst.getTimestamp("horario_saida");
+			System.out.println(id + " | " + numero_vaga + " | " + veiculo + " | " + placa + " | " +  status + " | " + 
+			horario_entrada + " | " + horario_saida);
 		}
-		return resultado ;
-		
+	}
+	
 
-	} 
 	
 }
